@@ -19,6 +19,17 @@ app.get("/news/:id",(req,res)=>{
     const singalnews = news.find(news => news._id == id)||{}
     res.send(singalnews)
 })
+app.get("/catagory/:id",(req,res)=>{
+    const id =req.params.id
+    if (id==0) {
+        res.send(news)
+    }
+    else{
+        const catagoryNews = news.filter(news => news.category_id === id)
+        res.send(catagoryNews)
+    }
+
+})
 app.listen(port,()=>{
     console.log(`Dragon api is running on port ${port} `);
 })
